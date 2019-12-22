@@ -4,7 +4,7 @@
 
 ## Overview
 
-![alt](./img/architecture.jpg)
+ <img src="./img/architecture.jpg" width="30%">
 
 シンプルな商品管理システムを構築する  
 大まかな構成は以下の通り
@@ -65,6 +65,7 @@ nodejsやMongoDBに慣れるために、以下のリンク先の入門を実施�
 | Name          | URI            | Note         |
 | ------------- | -------------- | ------------ |
 | login         | /login         | 認証画面     |
+| menu          | /goods         | トップ画面   |
 | goods_create  | /goods/create  | 商品登録画面 |
 | goods_update  | /goods/update  | 商品更新画面 |
 | goods_details | /goods/details | 商品詳細画面 |
