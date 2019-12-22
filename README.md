@@ -4,7 +4,7 @@
 
 ## Overview
 
-<img src="./img/architecture.jpg" width="50%">
+<img src="./img/architecture.jpg" width="80%">
 
 シンプルな商品管理システムを構築する  
 大まかな構成は以下の通り
@@ -76,7 +76,7 @@ __NOTE__
 
 ### 画面遷移図
 
-<img src="./img/screen_transition_diagram.jpg" width="50%">
+<img src="./img/screen_transition_diagram.jpg" width="80%">
 
 ### API一覧
 
