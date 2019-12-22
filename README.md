@@ -4,6 +4,8 @@
 
 ## Overview
 
+![alt](./img/architecture.jpg)
+
 シンプルな商品管理システムを構築する  
 大まかな構成は以下の通り
 
