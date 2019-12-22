@@ -4,7 +4,7 @@
 
 ## Overview
 
- <img src="./img/architecture.jpg" width="30%">
+<img src="./img/architecture.jpg" width="50%">
 
 シンプルな商品管理システムを構築する  
 大まかな構成は以下の通り
@@ -75,6 +75,8 @@ __NOTE__
 画面のURIは[ルーティング](https://www.slideshare.net/ushiboy/spa-76170499)に使用する
 
 ### 画面遷移図
+
+<img src="./img/screen_transition_diagram.jpg" width="50%">
 
 ### API一覧
 
