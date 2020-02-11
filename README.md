@@ -15,10 +15,15 @@
 - 画面系のフレームワークには`Angular`を使用する
 - Webサーバーのフレームワークには`Express`を使用する
 - DatabaseにはNoSQLの`MongoDB`を使用する
+- 資産の管理には`git`を使用する
 
-__NOTE__  
-[SPA](https://digitalidentity.co.jp/blog/creative/about-single-page-application.html)とは  
-[NoSQL、MongoDB](https://qiita.com/Brutus/items/8a67a4db0fdc5a33d549)とは
+__NOTE__ 詳細についてはリンク先を参照のこと
+
+- [SPA](https://digitalidentity.co.jp/blog/creative/about-single-page-application.html)とは、単一のWebページでアプリケーションを構成する設計構造  
+- [AngularJS](https://www.buildinsider.net/web/angularjstips/0001)とは、フルスタックなフロントエンドWebアプリケーションフレームワーク  
+- [Express](https://techacademy.jp/magazine/16119#sec1)とは、Node.jsで利用できるWebアプリケーションフレームワーク  
+- [NoSQL、MongoDB](https://qiita.com/Brutus/items/8a67a4db0fdc5a33d549)とは、関係データベース管理システム (RDBMS) 以外のデータベース管理システム  
+- [git](https://qiita.com/gold-kou/items/7f6a3b46e2781b0dd4a0)とは、分散型バージョン管理システム  
 
 ## Preparation
 
@@ -36,9 +41,6 @@ __NOTE__
   - https://git-scm.com/
 - MongoDB
   - https://it-blue-collar-dairy.com/mongodb-install/
-
-__NOTE__  
-[git](https://qiita.com/gold-kou/items/7f6a3b46e2781b0dd4a0)とは  
 
 ### Training
 
@@ -113,10 +115,11 @@ type goods = {
 
 ## Development
 
-任意のディレクトリにこのrepositoryをクローンして、ローカルbrunchを作成する
+任意のディレクトリにこのrepositoryをクローンして、ローカルbranchを作成する
 
 ```bash
 git clone https://github.com/f-o-f/open-sample.git
+cd open-sample
 git checkout -b sample
 ```
 
@@ -151,6 +154,13 @@ ng new client
 公式サイトを参考に画面一覧、画面遷移図から画面資産を作成する  
 画面レイアウトのフレームワークとして[Flex-LayoutとAngular Material](https://dev.classmethod.jp/server-side/serverless/flex-layout-angular-material-goodbye-css/)を使用すること  
 
+#### Client build
+
+serverに画面資材を配置する際は`ng build`で資材をバンドルする  
+バンドル先を`server`フォルダ内に変更しておくことで、資材を移動する手間を省くことができる
+
+__Example__  バンドル先の指定：`angular.json`の`outputPath`を`../server/front`に変更する
+
 ### Server
 
 #### Server init
@@ -161,6 +171,10 @@ ng new client
 
 [[Node.js] Express を TypeScript で書く - 環境整備まで](https://qiita.com/kuroneko8960/items/74347b6a58020f33b18d)  
 
+静的ファイル（画面資産等）の提供については以下を参考に実施する
+
+[Express での静的ファイルの提供](https://expressjs.com/ja/starter/static-files.html)
+
 #### Server edit
 
 API一覧、Model定義からWebサーバーを作成する
@@ -169,3 +183,7 @@ API一覧、Model定義からWebサーバーを作成する
 [[Node.js] Express を TypeScript で書く - ルーティング編](https://qiita.com/kuroneko8960/items/1e6dcd0d897b42567319)  
 [[Node.js] Express を TypeScript で書く - MongoDB 接続編](https://qiita.com/kuroneko8960/items/fa8665017d98774d3c06)  
 [[Node.js] Express を TypeScript で書く - MongoDB CRUD編](https://qiita.com/kuroneko8960/items/438936767a0fed68afe4)  
+
+__NOTE__ MongoDBのNodejsパッケージのバージョンによっては仕様が異なるため、以下を参考にすること
+
+[Node.jsのMongoClientの仕様が変わってた](https://qiita.com/mimizq/items/76d3a948acb33881c8db)
