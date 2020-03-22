@@ -27,22 +27,20 @@ __NOTE__ 詳細についてはリンク先を参照のこと
 
 ## Preparation
 
-### Instrall
+### Install(2h)
 
 以下をインストールする
 
-- vscode
+- [vscode](https://code.visualstudio.com/)
   - コードエディタ、日本語化もできる
-  - https://code.visualstudio.com/
-- nvm,node,npm
+- [nvm,node,npm](https://qiita.com/idani/items/53567d92f936846e111c)
   - nodeはv10.13.0をインストールする
-  - https://qiita.com/idani/items/53567d92f936846e111c
-- git
-  - https://git-scm.com/
-- MongoDB
-  - https://it-blue-collar-dairy.com/mongodb-install/
+- [git](https://git-scm.com/)
+  - 分散型バージョン管理システム
+- [MongoDB](https://it-blue-collar-dairy.com/mongodb-install/)
+  - ドキュメント型のNoSQL
 
-### Training
+### Training(2h)
 
 nodejsやMongoDBに慣れるために、以下のリンク先の入門を実施する
 
@@ -135,6 +133,15 @@ git checkout -b sample
   - Webサーバーの利用にアクセストークンの認証を追加する
   - 参考：[【Node.js】expressでOAuth2プロバイダーを作ろう](https://qiita.com/seapolis/items/5f866e58784baf54f54c)
 
+__NOTE__ nodejsはのブロッキングI/Oと呼ばれる特性があるため注意すること
+
+- [ノンブロッキングI/O](https://techacademy.jp/magazine/16410)とは
+
+__NOTE__ Promise,async,awaitについては以下を参考
+
+- [Promise](https://blog.reud.net/2019/12/13/post-869/)について
+- [async,await](https://qiita.com/Anders/items/dfcb48d8b27ceaffb443)について
+
 開発手順は後述の通り
 
 ### Client
@@ -142,7 +149,7 @@ git checkout -b sample
 #### Client init
 
 `client`フォルダには画面資産のプロジェクトを作成する  
-プロジェクトの作成は[Angular公式サイト](http://www.tohoho-web.com/ex/angular.html)を参考に実施する  
+プロジェクトの作成は[こちらのサイト](http://www.tohoho-web.com/ex/angular.html)を参考に実施する  
 プロジェクト作成のコマンドは以下で実施すること  
 
 ```bash
@@ -153,6 +160,8 @@ ng new client
 
 公式サイトを参考に画面一覧、画面遷移図から画面資産を作成する  
 画面レイアウトのフレームワークとして[Flex-LayoutとAngular Material](https://dev.classmethod.jp/server-side/serverless/flex-layout-angular-material-goodbye-css/)を使用すること  
+
+__NOTE__ httpリクエストについては[公式HP](https://angular.jp/guide/http)がわかりやすいため参考とすること
 
 #### Client build
 
