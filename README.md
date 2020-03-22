@@ -131,6 +131,7 @@ git checkout -b sample
   - 商品情報の更新が実施できる
 - フェーズ４
   - Webサーバーの利用にアクセストークンの認証を追加する
+  - トークン認証用の[ミドルウェア](https://expressjs.com/ja/guide/using-middleware.html)を作成すること
   - 参考：[【Node.js】expressでOAuth2プロバイダーを作ろう](https://qiita.com/seapolis/items/5f866e58784baf54f54c)
 
 __NOTE__ nodejsはのブロッキングI/Oと呼ばれる特性があるため注意すること
