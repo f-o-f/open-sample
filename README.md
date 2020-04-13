@@ -134,7 +134,7 @@ git checkout -b sample
   - トークン認証用の[ミドルウェア](https://expressjs.com/ja/guide/using-middleware.html)を作成すること
   - 参考：[【Node.js】expressでOAuth2プロバイダーを作ろう](https://qiita.com/seapolis/items/5f866e58784baf54f54c)
 
-__NOTE__ nodejsはのブロッキングI/Oと呼ばれる特性があるため注意すること
+__NOTE__ nodejsはノンブロッキングI/Oと呼ばれる特性があるため注意すること
 
 - [ノンブロッキングI/O](https://techacademy.jp/magazine/16410)とは
 
