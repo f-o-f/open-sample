@@ -170,7 +170,7 @@ ng new client
 **NOTE** http リクエストについては[公式 HP](https://angular.jp/guide/http)がわかりやすいため参考とすること
 
 ```typescript
-// ディレクトリ構造サンプル
+// ディレクトリ構造サンプル（詳細はAngularのドキュメント参照）
 └─client
    ├─e2e // テストコード
    └─src
@@ -219,6 +219,8 @@ API 一覧、Model 定義から Web サーバーを作成する
     ├─dist // server 資産のビルド先
     ├─front // client 資産のビルド先
     └─src
+       │ index.ts // main
+       │
        ├─middleware // express のミドルウェアを格納
        └─router // express のルーターを格納
 ```
