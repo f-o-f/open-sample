@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="title">商品詳細</div>
+    <div class="product-detail-container">
+      <div class="param-line">
+        <div class="label">ID</div>
+        <div class="value">{{ goods.goods_id }}</div>
+      </div>
+      <div class="param-line">
+        <div class="label">名前</div>
+        <div class="value">{{ goods.name }}</div>
+      </div>
+      <div class="param-line">
+        <div class="label">サイズ</div>
+        <div class="value">{{ goods.size }}</div>
+      </div>
+      <div class="param-line">
+        <div class="label">量</div>
+        <div class="value">{{ goods.amount }}</div>
+      </div>
+      <div class="param-line">
+        <div class="label">メモ</div>
+        <div class="value">{{ goods.note }}</div>
+      </div>
+    </div>
+    <div class="footer">
+      <div class="button black" routerLink="/goods/list">戻る</div>
+      <div class="button black" (click) = "saveGoods(goods.goods_id)">更新</div>
+    </div>
+  </div>

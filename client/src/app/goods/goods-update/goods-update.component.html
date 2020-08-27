@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="title">商品編集</div>
+    <form>
+        <div class="update-form">
+            <div class="update-line">
+            <label>商品ID</label>
+            <span>{{ goods.goods_id }}</span>
+            </div>
+            <div class="update-line">
+            <label>名前</label>
+            <input type="text" name="name" >
+            </div>
+            <div class="update-line">
+            <label>サイズ</label>
+            <input type="number" name="size" >
+            </div>
+            <div class="update-line">
+            <label>量</label>
+            <input type="number" name="amount" >
+            </div>
+            <div class="update-line">
+            <label>メモ</label>
+            <input type="text" name="note" >
+            </div>
+        </div>
+        <div class="footer">
+            <div class="button black" (click)="saveGoods()">更新</div>
+            <div class="button white" routerLink="/goods/details">戻る</div>
+        </div>
+    </form>
+</div>

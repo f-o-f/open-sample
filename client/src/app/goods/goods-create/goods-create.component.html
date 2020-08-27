@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="title">商品登録</div>
+    <form class="create-form">
+      <div class="create-line">
+        <label>商品ID</label>
+        <input type="text" name="goods_id" [(ngModel)]="goods.goods_id">
+      </div>
+      <div class="create-line">
+        <label>名前</label>
+        <input type="text" name="name" [(ngModel)]="goods.name">
+      </div>
+      <div class="create-line">
+        <label>サイズ</label>
+        <input type="number" name="size" [(ngModel)]="goods.size">
+      </div>
+      <div class="create-line">
+        <label>量</label>
+        <input type="number"  name="amount" [(ngModel)]="goods.amount">
+      </div>
+      <div class="create-line">
+        <label>メモ</label>
+        <input type="text" name="note" [(ngModel)]="goods.note">
+      </div>
+    
+    <div class="footer">
+      <div class="button black" (click)="saveGoods()">登録</div>
+    </div>
+  </form>
+  </div>
