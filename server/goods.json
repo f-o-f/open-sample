@@ -1,0 +1,14 @@
+  [{
+    "goods_id": "A0001",
+    "name": "Angular1",
+    "size" : 1,
+    "amount" : 1,
+    "note": "１冊目の本です"
+  },
+  {
+    "goods_id": "A0002",
+    "name": "Angular2",
+    "size" : 2,
+    "amount" : 2,
+    "note": "2冊目の本です"
+  }]

@@ -1,27 +1,34 @@
 <div class="container">
-    <div class="title">商品編集</div>
-    <form>
+    <div class="title">
+        商品編集
+    </div>
+    <form [formGroup]="goodsForm">
         <div class="update-form">
             <div class="update-line">
             <label>商品ID</label>
-            <span>{{ goods.goods_id }}</span>
+            <span>{{ goodsForm.controls.goods_id.value }}</span>
             </div>
+
             <div class="update-line">
             <label>名前</label>
-            <input type="text" name="name" >
+            <input type="text" formControlName="name" >
             </div>
+
             <div class="update-line">
             <label>サイズ</label>
-            <input type="number" name="size" >
+            <input type="number" formControlName="size" >
             </div>
+
             <div class="update-line">
             <label>量</label>
-            <input type="number" name="amount" >
+            <input type="number" formControlName="amount" >
             </div>
+
             <div class="update-line">
             <label>メモ</label>
-            <input type="text" name="note" >
+            <input type="text" formControlName="note" >
             </div>
+            
         </div>
         <div class="footer">
             <div class="button black" (click)="saveGoods()">更新</div>

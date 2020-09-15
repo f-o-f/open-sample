@@ -12,14 +12,14 @@ export class GoodsDetailsComponent implements OnInit {
   constructor(private goodsService: GoodsService,private router: Router) { }
 
   ngOnInit(): void {
-    this.goodsService.getgoods().subscribe((goods: Goods) => {
-      this.goods = goods;
-    });
+    //this.goodsService.getgoods().subscribe((goods: Goods) => {
+      //this.goods = goods;
+    //});
   
   }
 
   saveGoods(id:string): void {
-    this.goodsService.keep(id);
+    //this.goodsService.keep(id);
     this.router.navigate(['/goods/update']);
   }
 }

@@ -1,10 +1,10 @@
 <div class="container">
     <div class="title">商品一覧</div>
     <div class="goods-list-container">
-      <div class="waiting-for-goods" *ngIf="goodslist === null; else goodsList">
+      <div class="waiting-for-goods" *ngIf="goodsListElement === null; else goodslist">
         商品を取得しています...
       </div>
-      <ng-template #goodsList>
+      <ng-template #goodslist>
         <div class="goods-list-table">
           <div class="goods-line header">
             <div class="goods-name">名前</div>
@@ -13,7 +13,7 @@
             <div class="goods-amount">量</div>
             <div class="goods-note">メモ</div>
           </div>
-          <div class="goods-line" *ngFor = "let goods of goodslist" (mouseenter)="hovered(goods)" (mouseleave)="unhovered(goods)">
+          <div class="goods-line" *ngFor = "let goods of goodsListElement" (mouseenter)="hovered(goods)" (mouseleave)="unhovered(goods)">
             <div class="goods-name">{{ goods.name }} </div>
             <div class="goods-goods_id">{{ goods.goods_id }}</div>
             <div class="goods-size">{{ goods.size }}</div>
@@ -28,3 +28,5 @@
     </div>
   </div>
   
+
+ <h1>aaaaaaaaaaaa</h1>

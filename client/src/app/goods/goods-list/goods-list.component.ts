@@ -12,26 +12,38 @@ class GoodsListElement extends Goods {
   styleUrls: ['./goods-list.component.scss']
 })
 export class GoodsListComponent implements OnInit {
-  goodslist: GoodsListElement[] = null;
-
-  constructor(private goodsService: GoodsService,private router: Router,) {   }
+  goodsListElement: GoodsListElement[] = null;
+  //goodsList:Goods[] = null;
+  constructor(private router: Router,private goodsService: GoodsService,) {   }
 
   ngOnInit(): void {
-    this.goodsService.list().subscribe((goodslist:Goods[])=>{
-      this.goodslist = goodslist.map((goods: Goods) => {
+    this.goodsService.list()
+     .subscribe((goodsList:Goods[])=> {
+
+       this.goodsListElement = goodsList.map((goods: Goods) => {
         return { // <= 変更
           ... goods,
           hovered: false,
         };
-      });
-    });
+      }); 
+        //this.goodsList = goodsList;
+
+      }
+    ) 
+/*       this.goodsListElement = this.goodsList.map((goods:Goods) => {
+        return {
+          ... goods,
+          hovered: false,
+        };
+      });  */
+    
   }
 
-  hovered(goods: GoodsListElement): void { goods.hovered = true; } // <= 変更
-  unhovered(goods: GoodsListElement): void { goods.hovered = false; } // <= 変更
-
+  hovered(goods: GoodsListElement): void { goods.hovered = true; } 
+  unhovered(goods: GoodsListElement): void { goods.hovered = false; } 
+ 
   saveGoods(id:string): void {
-    this.goodsService.keep(id);
+    //this.goodsService.keep(id);
     this.router.navigate(['/goods/details']);
-  }
+  }  
 }
