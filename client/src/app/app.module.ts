@@ -10,6 +10,8 @@ import { GoodsCreateComponent } from './goods/goods-create/goods-create.componen
 import { MenuComponent } from './menu/menu.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     GoodsDetailsComponent,
     GoodsUpdateComponent,
     GoodsCreateComponent,
-    MenuComponent
+    MenuComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -27,6 +30,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     FormsModule,
     ReactiveFormsModule,
     FlexLayoutModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

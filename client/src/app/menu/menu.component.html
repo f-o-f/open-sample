@@ -1,9 +1,33 @@
-<p>menu works!</p>
+<body background-color="#F0FFCE">
+    <div fxLayout="column">
+        <div fxLayout="row" style="height: 200px">
+            <div fxFlex style="background-color: bisque" fxLayoutAlign="center center">button1</div>
+            <div fxFlex="20%" style="background-color: darkgoldenrod" fxLayoutAlign="center center">button2</div>
+        </div>
+        <div fxFlex="50px" style="background-color: darkseagreen" fxLayoutAlign="center center">button3</div>
+      </div>
+    
 <div class="menu">
     <div class="button" routerLink="/goods/create">
         登録
     </div>
-    <div class="button" (click)="saveGoods()">
+    
+    
+    <div class="button" routerLink="/goods/list">
         検索
     </div>
+    <form [formGroup]="goodsForm">
+            <label>商品ID</label>
+            <input type="text" formControlName="goods_id">
+            <div class="button black" (click)="saveGoods()">検索</div>
+    </form>
+
+<!--         <div class="goods-name">名前{{ goods.name }}</div>
+        <div class="goods-goods_id">ID{{ goods.goods_id }}</div>
+        <div class="goods-size">サイズ{{ goods.size }}</div>
+        <div class="goods-amount">量{{ goods.amount }}</div>
+        <div class="goods-note">メモ{{ goods.note }}</div> -->
+
 </div>
+
+</body>

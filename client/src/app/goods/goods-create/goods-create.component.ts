@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Goods } from '../../shared/models/goods';
 import { GoodsService } from '../../shared/services/goods.service';
 import { Router } from '@angular/router';
-import { formatCurrency } from '@angular/common';
 import { FormGroup,FormControl } from '@angular/forms';
 
 @Component({
@@ -23,16 +22,20 @@ export class GoodsCreateComponent implements OnInit {
     private goodsService: GoodsService) { }
 
   ngOnInit(): void {
-    //this.goodsService.get('00000').subscribe((goods: Goods) => {
-      //this.goods = goods;
-    //}); 
   }
 
 
-  saveGoods(): void {
+  async saveGoods() {
     const { name, goods_id, size,amount,note } = this.goodsForm.getRawValue();
-    this.goodsService.set(new Goods(name, goods_id,size,amount,note)); 
-    this.router.navigate(['/goods']);
+    await this.goodsService.set(new Goods(name, goods_id,size,amount,note))
+    .then(()=>{
+      
+      this.router.navigate(['/goods']);
+    }
+    )
+    .catch((msg:String)=>{
+      console.log(msg);
+    })
   }
 
 }

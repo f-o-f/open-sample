@@ -11,15 +11,19 @@ export class GoodsDetailsComponent implements OnInit {
   goods:Goods;
   constructor(private goodsService: GoodsService,private router: Router) { }
 
-  ngOnInit(): void {
-    //this.goodsService.getgoods().subscribe((goods: Goods) => {
-      //this.goods = goods;
-    //});
-  
+  async ngOnInit() {
+    await this.goodsService.get()
+    .then((goods:Goods)=>{
+    this.goods = goods;
+    })
+    .catch((msg:String)=>{
+      console.log(msg);
+    })
   }
 
-  saveGoods(id:string): void {
-    //this.goodsService.keep(id);
+  saveGoods() {
+    var id = this.goods.goods_id; 
+    this.goodsService.setId(id);
     this.router.navigate(['/goods/update']);
   }
 }

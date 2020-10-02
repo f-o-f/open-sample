@@ -14,14 +14,6 @@ app.use(function(req, res, next) {
   });
 app.use(Express.static('./front'));
 app.use('/goods', goods);
-
-
-/* app.post('/goods/search', (req: Express.Request, res: Express.Response, next: Express.NextFunction) => {
-    return res.send('Hello Nyanko.');
-}); */ 
-//app.use('/dev', dev);
-//app.listen(3000);
-
 app.use((req, res) => {
     res.status(404).json({ message: 'Not Found API.' });
 });

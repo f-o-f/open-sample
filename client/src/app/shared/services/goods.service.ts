@@ -1,87 +1,112 @@
 import { Injectable } from '@angular/core';
 import { Goods } from '../models/goods';
-import { Observable, of } from 'rxjs/index';
-import { HttpClient ,HttpHeaders,HttpParams } from '@angular/common/http';
-import { catchError, retry } from 'rxjs/operators';
-import { map } from 'rxjs/operators';
-//import {Http, Response} from '@angular/http';
-//import 'rxjs/add/operator/toPromise';
+import { HttpClient ,HttpHeaders, } from '@angular/common/http';
+import { JsonPipe } from '@angular/common';
+
 
 @Injectable({providedIn: 'root'})
+
 export class GoodsService {
-  goodslist = [
-    new Goods('Angular入門1','1',1,1, 'Angularが出来た。'),
-    new Goods('Angular入門2','2',2,2, 'Angularが出来た。'),
-    new Goods('Angular入門3','3',3,3, 'Angularが出来た。'),
-  ];
   private httpOptions: any = {
-    // ヘッダ情報
-   /*  headers: new HttpHeaders({
+
+     headers: new HttpHeaders({
       'Content-Type': 'application/json'
-    }), */
+    }), 
     // DELETE 実行時に `body` が必要になるケースがあるのでプロパティとして用意しておく
     // ( ここで用意しなくても追加できるけど... )
     //body: null
   };
-
-  //goodslist :Goods[] ;
+  goods_id:string;
+  //goods:Goods;
+  //goodsList :Goods[] =null;
   private url = 'http://localhost:3000';//要変更
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
   ) { }
-  
-  list(): Observable<Goods[]> {
-    //return this.goodslist; 
-    return this.http.post(this.url + '/goods/search', this.httpOptions)
-     .pipe(
-      map((response: any) =>
-        Object.keys(response).map((key: string) => {
-          const gds = response[key];
-          return new Goods(gds.name,gds.goods_id, gds.size, gds.amount, gds.note);
-        })
-      )
-    ); 
-  } 
-  /*private handleError<T> (operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      console.error(error);
-      console.log(`${operation} failed: ${error.message}`);
-      return of(result as T);
-    };
-  } */
- /*  private errorHandler(err) {
-    console.log('Error occured.', err);
-    return Promise.reject(err.message || err);
-  } */
 
-  /* getgoods():Observable<Goods>{
-    for(var i=0;i<this.goodslist.length;i++){
-      if(this.goods.goods_id==this.goodslist[i].goods_id){
-        return of (this.goodslist[i]); 
-       }
-    }
+  async list(): Promise<any> {
+    return await this.http.post(this.url + '/goods/search', this.httpOptions)
+    .toPromise()
+      .then(this.handleDataList)
+      .catch(this.handleFailure);
   }
-  get(id:string):Observable<Goods>{
-    for(var i=0;i<this.goodslist.length;i++){
-      if(id==this.goodslist[i].goods_id){
-        return of (this.goodslist[i]); 
-       }
-    }
-    this.goodslist.push(this.goods);
-    return of (this.goodslist[this.goodslist.length-1]);
-  }*/
-  set(goods:Goods):Observable<any>{
-    return this.http.post(this.url + '/goods', this.httpOptions)
-    .pipe((response: any) =>{
-    const result = response;
-     return result;
-    })
-      
-  } 
+  
+  async get():Promise<any>{
+    return await this.http.get(this.url + '/goods/'+this.goods_id, this.httpOptions)
+    .toPromise()
+      .then(this.filterGoodsDocument)
+        .then(this.handleData)
+      .catch(this.handleFailure);
+  }
+  async set(goods:Goods):Promise<any>{
+    await this.http.post(this.url + '/goods',goods, this.httpOptions)
+    .toPromise()
+      .then()
+      .catch(this.handleFailure);
+  }
+
+  setId(goods_id:string):void{
+    this.goods_id = goods_id;
+  }
+
+  async update(goods: Goods): Promise<any>{ 
+    return await this.http.put(this.url + '/goods/'+goods.goods_id, goods,this.httpOptions)
+    .toPromise()
+      .then()
+      .catch(this.handleFailure);
+  }
+  handleDataSet(response: Response) : Promise<string> {
+    let msg : string;
+    return Promise.resolve("error");
+  }
+ filterGoodsDocument(doc: object) {
+    const denied = ['_bsontype','_id'];
+    return Object.keys(doc)
+        .filter(key => denied.indexOf(key) === -1)
+        .reduce((obj, key) => {
+            obj[key] = doc[key];
+            return obj;
+        }, {});
+}
+  handleData(doc: Object) : Promise<Goods> {
+    var goods: Goods;
+    var docs
+    docs = JSON.stringify(doc);
+    var obj = JSON.parse(docs);
+    var name = obj.name
+    var goods_id = obj.goods_id;
+    var size = obj.size;
+    var amount = obj.amount;
+    var note = obj.note;
+    goods = new Goods(name,goods_id,size, amount,note); 
+    return Promise.resolve(goods);
+  }
+
+  handleDataList(response: Response) : Promise<Goods[]> {
+    var num =  Object.keys(response).length
+    var goodsList =[];
+    var goods: Goods;
+    for(var i = 0;i<num;i++){
+    var name = response[i].name;
+    var goods_id = response[i].goods_id;
+    var size = response[i].size;
+    var amount = response[i].amount;
+    var note = response[i].note;
+    
+    goods = new Goods(name,goods_id,size, amount,note);
+    goodsList.push(goods); 
+
+   } 
+    return Promise.resolve(goodsList);
+  }
+
+  handleFailure(response: Response) : Promise<string> {
+    let msg : string;
+    return Promise.reject("error");
+  }
+
+
 /*
-  keep(id:string){
-    this.goods.goods_id = id;
-  }
   update(goods: Goods): void { 
     const index = this.goodslist.findIndex((gds:Goods) => gds.goods_id === goods.goods_id);
     this.goodslist[index] = goods;

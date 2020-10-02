@@ -2,9 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { Goods } from '../../shared/models/goods';
 import { GoodsService } from '../../shared/services/goods.service';
 import { Router } from '@angular/router';
-class GoodsListElement extends Goods {
+//import { HttpClient ,HttpHeaders,HttpParams } from '@angular/common/http';
+/* class GoodsListElement extends Goods {
   hovered: boolean;
-}
+  constructor(name, goods_id,size, amount,note,hovered) {
+    super(name,goods_id,size,amount,note);
+    this.hovered = hovered;
+  }
+} */
 
 @Component({
   selector: 'app-goods-list',
@@ -12,38 +17,24 @@ class GoodsListElement extends Goods {
   styleUrls: ['./goods-list.component.scss']
 })
 export class GoodsListComponent implements OnInit {
-  goodsListElement: GoodsListElement[] = null;
-  //goodsList:Goods[] = null;
-  constructor(private router: Router,private goodsService: GoodsService,) {   }
+  goodsList:Goods[]=[]; 
+  constructor(private router: Router,private goodsService: GoodsService,) {}
 
-  ngOnInit(): void {
-    this.goodsService.list()
-     .subscribe((goodsList:Goods[])=> {
-
-       this.goodsListElement = goodsList.map((goods: Goods) => {
-        return { // <= 変更
-          ... goods,
-          hovered: false,
-        };
-      }); 
-        //this.goodsList = goodsList;
-
-      }
-    ) 
-/*       this.goodsListElement = this.goodsList.map((goods:Goods) => {
-        return {
-          ... goods,
-          hovered: false,
-        };
-      });  */
-    
+async ngOnInit(){
+  await this.goodsService.list()
+    .then((goodsList:Goods[])=>{
+      this.goodsList = goodsList;
+     }) 
+    .catch((msg:String)=>{
+     console.log(msg);
+   })
   }
 
-  hovered(goods: GoodsListElement): void { goods.hovered = true; } 
-  unhovered(goods: GoodsListElement): void { goods.hovered = false; } 
+  //hovered(goods: GoodsListElement): void { goods.hovered = true; } 
+  //unhovered(goods: GoodsListElement): void { goods.hovered = false; } 
  
-  saveGoods(id:string): void {
-    //this.goodsService.keep(id);
+  saveGoods(id:string){
+    this.goodsService.setId(id);
     this.router.navigate(['/goods/details']);
   }  
 }

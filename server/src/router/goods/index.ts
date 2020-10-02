@@ -13,8 +13,7 @@ router.post('/', (req, res, next) => {
     const size = req.body.size;
     const amount = req.body.amount;
     const note = req.body.note;
-    console.log(name);
-    console.log(goods_id);
+
     // 必須項目が入力済みかチェック
     if (goods_id === undefined || name === undefined) {
         res.status(400).json({ message: 'Require Parameter.' });
@@ -27,8 +26,7 @@ router.post('/', (req, res, next) => {
             res.status(500).json({message: err.message});
             return next(err);
         }
-
-        const collection = db.collection<GoodsDocument>('goods');
+        db.collection<GoodsDocument>('goods',(err,collection) =>{
         collection.insertOne(
             {
                 name :name,
@@ -44,13 +42,10 @@ router.post('/', (req, res, next) => {
                     res.status(500).json({message:err.message});
                     return next(err);
                 }
-
-                
-               // res.status(200).json(result);
-                client.close();
-                res.json(result);
+                res.json(result.insertedCount);
             }
         );
+        });
     });
 });
 
@@ -111,11 +106,76 @@ router.put('/:id', (req, res, next) => {
  */
 
 
-/*
+
 //商品情報更新
-router.put('/:id', noImpl);
+router.put('/:goods_id', (req, res, next) => {
+    // パラメータ取得
+    const goods_id = req.body.goods_id;
+    const name = req.body.name;
+    const size = req.body.size;
+    const amount = req.body.amount;
+    const note = req.body.note;
+
+    mongodbClient((err, client, db) => {
+        if (err) {
+            client.close();
+            res.status(500).json({message: err.message});
+            return next(err);
+        }
+        db.collection<GoodsDocument>('goods',(err,collection) =>{
+        collection.updateOne(
+            { "goods_id":goods_id},
+            { $set: 
+            {   name :name,
+                size :size,
+                amount :amount,
+                note :note,
+            }},
+            (err, result) => {
+                if (err) {
+                    client.close();
+                    res.status(500).json({message:err.message});
+                    return next(err);
+                }
+                res.json(result);
+            }
+        );
+        });
+    });
+});
+
 //商品情報取得
-router.get('/:id', noImpl);*/
+router.get('/:goods_id',  (req, res, next) => {
+    const goods_id = req.params.goods_id;
+    //ここまでOK
+    mongodbClient((err, client, db) => {
+       if (err) {
+           client.close();
+           res.status(500).json({message: err.message});
+           return next(err);
+       }
+
+       db.collection<GoodsDocument>('goods',(err,collection) =>{
+       collection.findOne({goods_id:goods_id},(err, result) => {
+           if (err) {
+               client.close();
+               res.status(500).json({message: err.message});
+               return next(err);
+           }
+
+           if(result == null) {
+               res.status(404).json({ message: 'Not found.'});
+               return next(err);
+           }else{
+                res.json(result);
+               //console.log(filterGoodsDocument(result));
+           }
+       });
+   })
+       ;
+   }); 
+});
+
 //商品情報検索
 router.post('/search', (req, res, next) => {
      mongodbClient((err, client, db) => {
@@ -125,7 +185,7 @@ router.post('/search', (req, res, next) => {
             return next(err);
         }
 
-        const collection = db.collection<GoodsDocument>('goods');
+        db.collection<GoodsDocument>('goods',(err,collection) =>{
         collection.find((err, result) => {
             if (err) {
                 client.close();
@@ -133,15 +193,22 @@ router.post('/search', (req, res, next) => {
                 return next(err);
             }
 
-            client.close();
-
             if (result == null) {
                 res.status(404).json({ message: 'Not found.'});
-            }  else
-            res.status(200).json(result);
+                return next(err);
+            }  else{
+                var cursor = result;
+                cursor.toArray(function(err, docs){
+                    // toArray用のコールバック関数
+                    if(err){
+                        res.status(500).json({message: err.message});
+                        return next(err);
+                    }
+                    res.json(docs);
+                }); 
+            }
         })
-
-        ;
+    });
     }); 
 });
 

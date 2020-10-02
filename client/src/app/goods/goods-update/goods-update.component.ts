@@ -10,6 +10,7 @@ import { FormGroup,FormControl } from '@angular/forms';
   styleUrls: ['./goods-update.component.scss']
 })
 export class GoodsUpdateComponent implements OnInit {
+  goods:Goods;
   goodsForm = new FormGroup({
     name: new FormControl(''),
     goods_id: new FormControl(''),
@@ -17,28 +18,30 @@ export class GoodsUpdateComponent implements OnInit {
     amount: new FormControl(''),
     note: new FormControl(''),
   });
-  
-  //goods:Goods;
   constructor(
     private router: Router,
     private goodsService: GoodsService,
     //private fb: FormBuilder,
     ) { }
 
-  ngOnInit(): void {
-    //this.goodsService.getgoods().subscribe((goods: Goods) => {
-      //this.goodsForm.setValue({ // <= 変更
-        //name: goods.name,
-        //goods_id: goods.goods_id,
-        //size: goods.size,
-        //amount:goods.amount,
-        //note: goods.note
-      //});
-    //}); 
-  }
+    async ngOnInit() {
+      await this.goodsService.get()
+      .then((goods:Goods)=>{
+        this.goodsForm.setValue({
+          goods_id: goods.goods_id,
+          name: goods.name,
+          size: goods.size,
+          amount: goods.amount,
+          note: goods.note,
+      })
+    })
+      .catch((msg:String)=>{
+        console.log(msg);
+      })
+    }
   saveGoods(): void {
     const { name, goods_id, size,amount,note } = this.goodsForm.getRawValue(); // <= 追加
-    //this.goodsService.update(new Goods(name, goods_id,size,amount,note)); 
+    this.goodsService.update(new Goods(name, goods_id,size,amount,note)); 
     this.router.navigate(['/goods']);
   }
 

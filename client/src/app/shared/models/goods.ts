@@ -4,6 +4,7 @@ export class Goods {
     size: number;
     amount: number;
     note: string;
+    _id: string;
   
     constructor(name, goods_id,size, amount,note) {
       this.name = name;
