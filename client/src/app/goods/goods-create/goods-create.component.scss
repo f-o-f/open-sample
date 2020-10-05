@@ -8,6 +8,7 @@
       width: 100%;
       font-weight: 600;
       font-size: 18px;
+      color: #A53F2B;
     }
   
     .create-form {
@@ -42,6 +43,12 @@
     .footer {
       display: flex;
       justify-content: center;
-      padding: 24px 0;
+      margin-top: 20px;
+      .button{
+        background-color:#A53F2B;
+        color: #F0FFCE;
+        font-weight: 600;
+        font-size: 25px;
+      }
     }
   }

@@ -2,7 +2,7 @@
     <div class="title">商品詳細</div>
     <div class="product-detail-container">
       <div class="param-line">
-        <div class="label">ID</div>
+        <div class="label">商品ID</div>
         <div class="value">{{ goods.goods_id }}</div>
       </div>
       <div class="param-line">
@@ -23,7 +23,7 @@
       </div>
     </div>
     <div class="footer">
-      <div class="button black" routerLink="/goods/list">戻る</div>
-      <div class="button black" (click) = "saveGoods()">更新</div>
+      <div class="button" routerLink="/goods/list">戻る</div>
+      <div class="button" (click) = "saveGoods()">更新</div>
     </div>
   </div>

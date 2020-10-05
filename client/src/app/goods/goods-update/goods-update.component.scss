@@ -4,10 +4,11 @@
     width: 800px;
     .title {
       padding: 8px 0;
-      text-align: center;
-      width: 100%;
-      font-weight: 600;
-      font-size: 18px;
+    text-align: center;
+    width: 100%;
+    font-weight: 600;
+    font-size: 18px;
+    color: #A53F2B;
     }
   
     .update-form {
@@ -41,7 +42,13 @@
   
     .footer {
       display: flex;
-      justify-content: center;
-      padding: 24px 0;
+      justify-content: space-between;
+      margin-top: 20px;
+      .button{
+        background-color:#A53F2B;
+        color: #F0FFCE;
+        font-weight: 600;
+        font-size: 25px;
+      }
     }
   }
