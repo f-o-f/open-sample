@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <title>client</title>
+  </head>
+  <body>
+
+    <div class="center">
+    <h1>商品検索</h1>
+     <form method="post">
+      <input type="search" name="goods_id" value="">
+      <button type="submit">検索する</button>
+     </form>
+
+     <br><br><h1>商品詳細</h1>
+     <div class="product-name">商品名：{{ products.name }}</div>
+     <div class="product-goods_id">ID：{{ products.goods_id }}</div>
+     <div class="product-size">大きさ：{{ products.size }}</div>
+     <div class="product-amount">内容量：{{ products.amount }}</div>
+     <div class="product-note">備考：{{ products.note }}</div>
+     
+    </div>
+ 
+ 
+
+  </body>
+</html>
