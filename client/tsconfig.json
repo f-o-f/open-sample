@@ -13,5 +13,13 @@
     {
       "path": "./tsconfig.spec.json"
     }
-]
+  ],
+  "compilerOptions": {
+    "baseUrl": "src", 
+    "paths": {
+      "@app/*": [
+      "app/*"
+    ]
+    }
+  }
 }

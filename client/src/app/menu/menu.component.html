@@ -1,26 +1,15 @@
 <div class="container">
-    <div class="title">メニュー</div>
+    <div class="title" translate>menu</div>
     <div fxLayout="row" style="height: 400px">
         <div fxFlex  fxLayoutAlign="center center">
-            <div class="button" routerLink="/goods/create">
-                登録
+            <div class="button" routerLink="/goods/create" translate>
+                register
             </div>
         </div>
         <div fxFlex  fxLayoutAlign="center center">
-            <div class="button" routerLink="/goods/list">
-                検索
+            <div class="button" routerLink="/goods/list" translate>
+                search
             </div>
         </div>
     </div>
-<!--     <form [formGroup]="goodsForm">
-            <label>商品ID</label>
-            <input type="text" formControlName="goods_id">
-            <div class="button black" (click)="saveGoods()">検索</div>
-    </form> -->
-
-<!--         <div class="goods-name">名前{{ goods.name }}</div>
-        <div class="goods-goods_id">ID{{ goods.goods_id }}</div>
-        <div class="goods-size">サイズ{{ goods.size }}</div>
-        <div class="goods-amount">量{{ goods.amount }}</div>
-        <div class="goods-note">メモ{{ goods.note }}</div> -->
-        </div>
+</div>

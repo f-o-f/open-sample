@@ -5,25 +5,24 @@
     height: 35px;
     width: 135px;
     border-radius: 4px;
-    background-color: #2196F3;
-    color: #FFFFFF;
-    font-size: 14px;
     line-height: 21px;
     cursor: pointer;
-  
-    &.black {
-      background-color: #212121;
-    }
-  
-    &.white {
-      color: #212121;
-      background-color: white;
-      border: 1px solid #212121;
+    background-color:#A53F2B;
+    color: #F0FFCE;
+    font-weight: 600;
+    font-size: 25px;
+    border: none;  
+     
+    &.disabled {
+      background-color: #B0BEC5;
+      pointer-events: none;
+      box-shadow: none;
     }
   }
+.caution{color: #A53F2B;}
 
-  .menu{
-    
-  }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

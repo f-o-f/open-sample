@@ -1,32 +1,64 @@
 <div class="container">
-    <div class="title">
-      商品登録
-    </div>
-    <form [formGroup]="goodsForm">
-      <div class="create-form">
-        <div class="create-line">
-          <label>商品ID</label>
-          <input type="text" formControlName="goods_id">
-        </div>
-        <div class="create-line">
-          <label>名前</label>
-          <input type="text" formControlName="name">
-        </div>
-        <div class="create-line">
-          <label>サイズ</label>
-          <input type="number" formControlName="size">
-        </div>
-        <div class="create-line">
-          <label>量</label>
-          <input type="number" formControlName="amount">
-        </div>
-        <div class="create-line">
-          <label>メモ</label>
-          <input type="text" formControlName="note">
+  <div class="title" translate>
+    goods_registration
+  </div>
+  <form (ngSubmit)="saveGoods()" #formCheck="ngForm" [formGroup]="goodsForm">
+    <div class="create-form">
+      <div class="create-line">
+        <label translate>goods_id_required</label>
+        <div>
+          <input type="text" formControlName="goods_id" required minlength="5" maxlength="5">
+          <div class="caution"
+            *ngIf="goodsForm.controls['goods_id'].errors && (goodsForm.controls['goods_id'].dirty || goodsForm.controls['goods_id'].touched) ">
+            <div *ngIf="goodsForm.controls['goods_id'].errors.required" translate>
+              no_goods_id_entered
+            </div>
+            <div *ngIf="goodsForm.controls['goods_id'].errors.minlength 
+          || goodsForm.controls['goods_id'].errors.maxlength 
+          || goodsForm.controls['goods_id'].errors.pattern" translate>
+              show_example
+            </div>
+          </div>
         </div>
       </div>
+      <div class="create-line">
+        <label translate>name_required</label>
+        <div>
+          <input type="text" formControlName="name" required maxlength="30">
+          <div class="caution"
+            *ngIf="goodsForm.controls['name'].errors && (goodsForm.controls['name'].dirty || goodsForm.controls['name'].touched) ">
+            <div *ngIf="goodsForm.controls['name'].errors.required" translate>
+              no_name_entered
+            </div>
+            <div *ngIf="goodsForm.controls['name'].errors.maxlength" translate>
+              enter_within_30
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="create-line">
+        <label translate>size_required</label>
+        <div>
+          <input type="number" formControlName="size" required>
+          <div class="caution"
+            *ngIf="goodsForm.controls['size'].errors && (goodsForm.controls['size'].dirty || goodsForm.controls['size'].touched) ">
+            <div *ngIf="goodsForm.controls['size'].errors.required" translate>
+              no_size_entered
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="create-line">
+        <label translate>amount</label>
+        <input type="number" formControlName="amount">
+      </div>
+      <div class="create-line">
+        <label translate>note</label>
+        <input type="text" formControlName="note">
+      </div>
+    </div>
     <div class="footer">
-      <div class="button black" (click)="saveGoods()">登録</div>
+      <button class="button" [class.disabled]="formCheck.invalid"><span translate>register</span></button>
     </div>
   </form>
-  </div>
+</div>

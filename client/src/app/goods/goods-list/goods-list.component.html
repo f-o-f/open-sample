@@ -1,24 +1,32 @@
 <div class="container">
-    <div class="title">商品一覧</div>
-    <div class="goods-list-container">
-      <div class="waiting-for-goods" *ngIf="goodsList === []; else goodslist">
-        商品を取得しています...
-      </div>
-       <ng-template #goodslist> 
-        <div class="goods-list-table">
-          <div class="goods-line header">
-            <div class="goods-name">名前</div>
-            <div class="goods-goods_id">ID</div>
-            <div class="goods-size">サイズ</div>
-    
-          </div>
-          <div class="goods-line" *ngFor = "let goods of goodsList">
-            <div class="goods-name">{{ goods.name }} </div>
-            <div class="goods-goods_id">{{ goods.goods_id }}</div>
-            <div class="goods-size">{{ goods.size }}</div>
-            <div class="button" (click) = "saveGoods(goods.goods_id)">明細</div>
-          </div>
-        </div>
-      </ng-template>
+  <div class="title" translate>goods_list</div>
+  <div class="goods-list-container">
+    <div class="mat-elevation-z8">
+      <mat-spinner *ngIf="!dataSource"></mat-spinner>
+      <mat-table [dataSource]="dataSource">
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef translate>name</mat-header-cell>
+          <mat-cell *matCellDef="let elememt">{{elememt?.name}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="goods_id">
+          <mat-header-cell *matHeaderCellDef translate>goods_id</mat-header-cell>
+          <mat-cell *matCellDef="let elememt">{{elememt?.goods_id}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="size">
+          <mat-header-cell *matHeaderCellDef translate>size</mat-header-cell>
+          <mat-cell *matCellDef="let elememt">{{elememt?.size}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="detail">
+          <mat-header-cell *matHeaderCellDef translate></mat-header-cell>
+          <mat-cell *matCellDef="let elememt">
+            <a (click)="getGoods(elememt.goods_id)">
+              <div class="button" translate>detail</div>
+            </a>
+          </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns;"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
     </div>
   </div>
+</div>

@@ -1,38 +1,57 @@
 <div class="container">
-    <div class="title">
-        商品編集
+    <div class="title" translate>
+        goods_update
     </div>
-    <form [formGroup]="goodsForm">
+    <form (ngSubmit)="updateGoods()" #formCheck="ngForm" [formGroup]="goodsForm">
         <div class="update-form">
             <div class="update-line">
-            <label>商品ID</label>
-            <span>{{ goodsForm.controls.goods_id.value }}</span>
+                <label translate>goods_id</label>
+                <span>{{ goodsForm.controls.goods_id.value }}</span>
             </div>
 
             <div class="update-line">
-            <label>名前</label>
-            <input type="text" formControlName="name" >
+                <label translate>name</label>
+                <div>
+                    <input type="text" formControlName="name" required maxlength="30">
+                    <div class="caution"
+                        *ngIf="goodsForm.controls['name'].errors && (goodsForm.controls['name'].dirty || goodsForm.controls['name'].touched) ">
+                        <div *ngIf="goodsForm.controls['name'].errors.required" translate>
+                            no_name_entered
+                        </div>
+                        <div *ngIf="goodsForm.controls['name'].errors.maxlength" translate>
+                            enter_within_30
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="update-line">
-            <label>サイズ</label>
-            <input type="number" formControlName="size" >
+                <label translate>size</label>
+                <div>
+                    <input type="number" formControlName="size" required>
+                    <div class="caution"
+                        *ngIf="goodsForm.controls['size'].errors && (goodsForm.controls['size'].dirty || goodsForm.controls['size'].touched) ">
+                        <div *ngIf="goodsForm.controls['size'].errors.required" translate>
+                            no_size_entered
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="update-line">
-            <label>量</label>
-            <input type="number" formControlName="amount" >
+                <label translate>amount</label>
+                <input type="number" formControlName="amount">
             </div>
 
             <div class="update-line">
-            <label>メモ</label>
-            <input type="text" formControlName="note" >
+                <label translate>note</label>
+                <input type="text" formControlName="note">
             </div>
-            
+
         </div>
         <div class="footer">
-            <div class="button white" routerLink="/goods/details">戻る</div>
-            <div class="button black" (click)="saveGoods()">更新</div>
+            <div class="button cancel" routerLink="/goods/details" translate>back</div>
+            <button class="button" [class.disabled]="formCheck.invalid"><span translate>update</span></button>
         </div>
     </form>
 </div>

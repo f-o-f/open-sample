@@ -1,29 +1,29 @@
 <div class="container">
-    <div class="title">商品詳細</div>
+    <div class="title" translate>goods_details</div>
     <div class="product-detail-container">
       <div class="param-line">
-        <div class="label">商品ID</div>
-        <div class="value">{{ goods.goods_id }}</div>
+        <div class="label" translate>goods_id</div>
+        <div class="value">{{ goods?.goods_id }}</div>
       </div>
       <div class="param-line">
-        <div class="label">名前</div>
-        <div class="value">{{ goods.name }}</div>
+        <div class="label" translate>name</div>
+        <div class="value">{{ goods?.name }}</div>
       </div>
       <div class="param-line">
-        <div class="label">サイズ</div>
-        <div class="value">{{ goods.size }}</div>
+        <div class="label" translate>size</div>
+        <div class="value">{{ goods?.size }}</div>
       </div>
       <div class="param-line">
-        <div class="label">量</div>
-        <div class="value">{{ goods.amount }}</div>
+        <div class="label" translate>amount</div>
+        <div class="value">{{ goods?.amount }}</div>
       </div>
       <div class="param-line">
-        <div class="label">メモ</div>
-        <div class="value">{{ goods.note }}</div>
+        <div class="label" translate>note</div>
+        <div class="value">{{ goods?.note }}</div>
       </div>
     </div>
     <div class="footer">
-      <div class="button" routerLink="/goods/list">戻る</div>
-      <div class="button" (click) = "saveGoods()">更新</div>
+      <div class="button cancel" routerLink="/goods/list" translate>back</div>
+      <div class="button" (click) = "updateGoods()" translate>update</div>
     </div>
   </div>
