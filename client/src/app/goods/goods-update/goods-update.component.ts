@@ -1,0 +1,37 @@
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+
+import { Goods } from '../../shared/models/goods';
+import { GoodsService } from '../../shared/services/goods.service';
+
+@Component({
+  selector: 'app-goods-update',
+  templateUrl: './goods-update.component.html',
+  styleUrls: ['./goods-update.component.css']
+})
+export class GoodsUpdateComponent implements OnInit {
+  goods: Goods = new Goods("","",0,0,"");
+
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private service: GoodsService
+  ) { }
+
+  ngOnInit(): void {
+    const id = this.route.snapshot.paramMap.get('id');
+    console.log(id);
+    if(id !== null){
+      this.goods = this.service.getGoods(id);
+    }
+  }
+
+  onSubmit(form:any): void {
+    console.log(form.goods_id);
+    //const id = <string>this.route.snapshot.paramMap.get('id');
+    let newgoods:Goods = new Goods(form.name,form.goods_id,form.size,form.amount,form.note);
+    console.log(newgoods);
+    this.service.setGoods(newgoods);
+    this.router.navigate(["/goods"]);
+  }
+}

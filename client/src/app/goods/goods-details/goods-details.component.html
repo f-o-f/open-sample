@@ -1,0 +1,16 @@
+<h2>詳細</h2>
+<table>
+  <tr><th>name</th><td>{{ goods.name }}</td></tr>
+  <tr><th>id</th><td>{{ goods.goods_id }}</td></tr>
+  <tr><th>size</th><td>{{ goods.size }}</td></tr>
+  <tr><th>amount</th><td>{{ goods.amount }}</td></tr>
+  <tr><th>note</th><td>{{ goods.note }}</td></tr>
+</table>
+<br>
+<button routerLink="/goods/update/{{ goods.goods_id }}">
+  更新
+</button>
+<br><br>
+<button routerLink="/goods/list">
+  戻る
+</button>
