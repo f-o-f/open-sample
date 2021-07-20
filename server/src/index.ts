@@ -17,17 +17,24 @@ app.use(bodyParser.json());
 //var port = process.env.PORT || 3000; // port番号を指定
 var port = 3000; 
 
-var router = require('./models/route/index.ts');
-app.use('', router);
+//var router = require('./models/route/index.ts');
+//app.use('', router);
 
-app.use(express.static(path.join(__dirname, '../front/')));
+//app.use(express.static(path.join(__dirname, '../front/')));
+app.use(express.static('./front'));
   
 //サーバ起動
 app.listen(port);
 console.log('listen on port ' + port);
 
-
 /*
+
+let goodsList = [
+  {name:"OOTP",goods_id:"1",size:100,amount:20,note:"baseball simulation game"},
+  {name:"OOTP2",goods_id:"2",size:100,amount:20,note:"baseball simulation game"},
+  {name:"OOTP3",goods_id:"1",size:100,amount:20,note:"baseball simulation game"},
+];
+
 router.post('/',function(req,res){
     goodsList.push(req.body);
     res.end();
