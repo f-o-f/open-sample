@@ -14,11 +14,13 @@ export class GoodsListComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private goodsService: GoodsService
+    private service: GoodsService
   ) { }
 
   ngOnInit(): void {
-    this.goodsList = this.goodsService.getGoodsList();
+    this.service.getGoodsList().subscribe(res => {
+      this.goodsList = res;
+    });
   }
 
 }

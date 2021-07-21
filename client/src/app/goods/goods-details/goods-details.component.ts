@@ -15,12 +15,14 @@ export class GoodsDetailsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private goodsService: GoodsService
+    private service: GoodsService
   ) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
-      this.goods = this.goodsService.getGoods(params['id']);
+      this.service.getGoods(params['id']).subscribe(res => {
+        this.goods = res;
+      });
     });
   }
 

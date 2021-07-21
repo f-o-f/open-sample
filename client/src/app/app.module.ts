@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,7 +14,6 @@ import { GoodsDetailsComponent } from './goods/goods-details/goods-details.compo
 import { GoodsComponent } from './goods/goods/goods.component';
 import { GoodsCreateComponent } from './goods/goods-create/goods-create.component';
 import { GoodsUpdateComponent } from './goods/goods-update/goods-update.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './header/header.component';
 
 @NgModule({
@@ -23,16 +24,18 @@ import { HeaderComponent } from './header/header.component';
     GoodsComponent,
     GoodsCreateComponent,
     GoodsUpdateComponent,
-    HeaderComponent
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
     MatIconModule
     ],
-  providers: [],
+  providers: [
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

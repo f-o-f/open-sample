@@ -10,28 +10,32 @@ import { GoodsService } from '../../shared/services/goods.service';
   styleUrls: ['./goods-update.component.css']
 })
 export class GoodsUpdateComponent implements OnInit {
+  result='';
   goods: Goods = new Goods("","",0,0,"");
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private service: GoodsService
-  ) { }
+    private service: GoodsService,
+  ) {}
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     console.log(id);
     if(id !== null){
-      this.goods = this.service.getGoods(id);
+      this.service.getGoods(id).subscribe(res => {
+        this.goods = res;
+      });
     }
   }
 
   onSubmit(form:any): void {
-    console.log(form.goods_id);
+    //console.log(form.goods_id);
     //const id = <string>this.route.snapshot.paramMap.get('id');
     let newgoods:Goods = new Goods(form.name,form.goods_id,form.size,form.amount,form.note);
-    console.log(newgoods);
-    this.service.setGoods(newgoods);
-    this.router.navigate(["/goods"]);
+    //console.log(newgoods);
+    this.service.setGoods(newgoods).subscribe(() => {
+      this.router.navigate(["/goods"]);
+    });
   }
 }

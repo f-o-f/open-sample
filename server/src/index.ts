@@ -1,7 +1,11 @@
+import expressListEndpoints from "express-list-endpoints";
+
 var express    = require('express');
 var app        = express();
 var path       = require('path');
 var bodyParser = require('body-parser');
+//var expressListEndpoints = require('express-list-endpoints');
+/*
 var mongoose   = require('mongoose');
 
 mongoose.Promise = global.Promise;
@@ -10,6 +14,7 @@ mongoose.connection.on('error', function(err) {
     console.error('MongoDB connection error: ' + err);
     process.exit(-1);
 });
+*/
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -17,15 +22,21 @@ app.use(bodyParser.json());
 //var port = process.env.PORT || 3000; // port番号を指定
 var port = 3000; 
 
-//var router = require('./models/route/index.ts');
-//app.use('', router);
+var goods_router = require('./models/route/goods.ts');
+app.use('/goods', goods_router);
+
+
+var test = require('./models/route/index.ts');
+app.use('/test', test);
 
 //app.use(express.static(path.join(__dirname, '../front/')));
 app.use(express.static('./front'));
   
 //サーバ起動
-app.listen(port);
-console.log('listen on port ' + port);
+app.listen(3000, () => {
+  console.log('Listen started at port 3000.');
+  console.log(expressListEndpoints(app));
+});
 
 /*
 

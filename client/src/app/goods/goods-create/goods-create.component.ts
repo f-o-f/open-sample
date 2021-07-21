@@ -15,7 +15,7 @@ export class GoodsCreateComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private goodsService: GoodsService
+    private service: GoodsService
   ) { }
 
   ngOnInit(): void {
@@ -23,7 +23,8 @@ export class GoodsCreateComponent implements OnInit {
 
   onSubmit(form: any): void {
     this.goods = new Goods(form.name, form.goods_id, form.size, form.amount, form.note);
-    this.goodsService.addGoods(this.goods);
-    this.router.navigate(['/goods']);
+    this.service.addGoods(this.goods).subscribe(() => {
+      this.router.navigate(["/goods"]);
+    });
   }
 }
