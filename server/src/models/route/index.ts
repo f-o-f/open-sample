@@ -1,7 +1,8 @@
+import * as Express from 'express';
 import mongodbClient from '../../common/mongodbClient';
 
-var express = require('express');
-var router = express.Router();
+//var express = require('express');
+const router = Express.Router();
 
 router.get('/mongodb', (req, res, next) => {
     mongodbClient((err, client) => {
@@ -14,4 +15,4 @@ router.get('/mongodb', (req, res, next) => {
     });
 });
 
-module.exports = router;
+export default router;

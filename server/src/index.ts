@@ -1,42 +1,36 @@
 import expressListEndpoints from "express-list-endpoints";
+import * as Express from 'express';
+import * as BodyParser from 'body-parser';
+import goods from './models/route/goods';
+import test from './models/route/index';
 
-var express    = require('express');
-var app        = express();
-var path       = require('path');
-var bodyParser = require('body-parser');
-//var expressListEndpoints = require('express-list-endpoints');
-/*
-var mongoose   = require('mongoose');
 
-mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017/ExpressAPI');
-mongoose.connection.on('error', function(err) {
-    console.error('MongoDB connection error: ' + err);
-    process.exit(-1);
-});
-*/
+const app = Express();
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+
+app.use(BodyParser.urlencoded({ extended: true }));
+app.use(BodyParser.json());
 
 //var port = process.env.PORT || 3000; // port番号を指定
 var port = 3000; 
 
-var goods_router = require('./models/route/goods.ts');
-app.use('/goods', goods_router);
+//var goods_router = require('./models/route/goods.ts');
+app.use('/goods', goods);
 
 
-var test = require('./models/route/index.ts');
+//var test = require('./models/route/index.ts');
 app.use('/test', test);
 
 //app.use(express.static(path.join(__dirname, '../front/')));
-app.use(express.static('./front'));
+app.use(Express.static('./front'));
   
 //サーバ起動
 app.listen(3000, () => {
   console.log('Listen started at port 3000.');
   console.log(expressListEndpoints(app));
 });
+
+export default app;
 
 /*
 

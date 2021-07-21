@@ -1,5 +1,7 @@
-var express = require('express');
-var router = express.Router();
+import * as Express from 'express';
+
+//var express = require('express');
+var router = Express.Router();
 var GoodsModel = require('../goodsModel.ts');
 
 router.post('/',function(req,res){
@@ -62,4 +64,4 @@ router.post('/search', function(req, res) {
 });
 
 //routerをモジュールとして扱う準備
-module.exports = router;
+export default router;

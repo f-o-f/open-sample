@@ -1,13 +1,10 @@
-var mongoose     = require('mongoose');
-var Schema       = mongoose.Schema;
+import * as MongoDB from 'mongodb';
 
-var GoodsSchema   = new Schema({
-    name :String,
-    goods_id :String,
-    size :Number,
-    amount :Number,
-    note :String
-});
-
-// スキーマをモデルとしてコンパイルし、それをモジュールとして扱えるようにする
-module.exports = mongoose.model('GoodsSchema', GoodsSchema);
+export interface GoodsModel {
+    _id: MongoDB.ObjectId;
+    name :string;
+    goods_id :string;
+    size :number;
+    amount :number;
+    note :string;
+}
