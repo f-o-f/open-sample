@@ -1,7 +1,6 @@
 import * as Express from 'express';
 import mongodbClient from '../../common/mongodbClient';
 
-//var express = require('express');
 const router = Express.Router();
 
 router.get('/mongodb', (req, res, next) => {

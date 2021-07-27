@@ -24,7 +24,8 @@ export class GoodsCreateComponent implements OnInit {
   onSubmit(form: any): void {
     this.goods = new Goods(form.name, form.goods_id, form.size, form.amount, form.note);
     this.service.addGoods(this.goods).subscribe(() => {
-      this.router.navigate(["/goods"]);
+      console.log('success');
     });
+    this.router.navigate(["/goods"]);
   }
 }

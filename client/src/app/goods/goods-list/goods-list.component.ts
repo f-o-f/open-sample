@@ -20,6 +20,7 @@ export class GoodsListComponent implements OnInit {
   ngOnInit(): void {
     this.service.getGoodsList().subscribe(res => {
       this.goodsList = res;
+      console.log(res);
     });
   }
 

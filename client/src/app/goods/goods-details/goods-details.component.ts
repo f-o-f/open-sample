@@ -9,8 +9,6 @@ import { ActivatedRoute, Params } from '@angular/router';
   styleUrls: ['./goods-details.component.css']
 })
 export class GoodsDetailsComponent implements OnInit {
-  //goods :Goods[] = [];
-  //goodslist :Goods[] = [];
   goods :Goods = new Goods("","",0,0,"");
 
   constructor(

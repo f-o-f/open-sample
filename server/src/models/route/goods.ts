@@ -1,67 +1,146 @@
 import * as Express from 'express';
+import mongodbClient from '../../common/mongodbClient';
+import { GoodsModel } from '../goodsModel';
 
-//var express = require('express');
 var router = Express.Router();
-var GoodsModel = require('../goodsModel.ts');
 
-router.post('/',function(req,res){
-    var goods = new GoodsModel();
+router.post('/', (req, res, next) => {
+    console.log("Server add");
 
-    goods.name = req.body.name;
-    goods.goods_id = req.body.goods_id;
-    goods.size = req.body.size;
-    goods.amount = req.body.amount;
-    goods.note = req.body.note;
+    const name = req.body.name;
+    const goods_id = req.body.goods_id;
+    const size = req.body.size;
+    const amount = req.body.amount;
+    const note = req.body.note;
 
-    goods.save(function(err) {
-        if (err){
-            // エラーがあった場合エラーメッセージを返す
-            res.send(err);
-        } else {
-            // エラーがなければ「Success!!」
-            res.json({ message: 'Success!!' });
+    mongodbClient((err, client, db) => {
+        if (err) {
+            client.close();
+            res.status(500).json({ message: 'MongoDB not connected.' });
+            return next(err);
         }
+        
+        const collection = db.collection<GoodsModel>('goods');
+        
+        collection.insertOne(
+            {
+                name: name,
+                goods_id: goods_id,
+                size: size,
+                amount: amount,
+                note: note,
+            },)
+            .then((result) => {
+                console.log(result);
+                res.status(200).json(result)
+            })
+            .catch((err) =>{ 
+                console.log(err);
+            })
+            .then(() => {
+                client.close();
+            });
+        
     });
 });
 
-router.get('/:id', function(req, res) {
-    var Goodsid = req.params.id;
-    GoodsModel.findById(Goodsid,function(err, goods){
-        res.json(goods);
-    });
-});
+router.get('/:id', (req, res, next) => {
+    console.log("Server detail");
+    const goods_id = req.params.id;
 
-router.put('/:id', function(req, res) {
-    var Goodsid = req.params.id;
+    mongodbClient((err, client, db) => {
+        if (err) {
+            client.close();
+            res.status(500).json({ message: 'MongoDB not connected.' });
+            return next(err);
+        }
 
-    GoodsModel
-        .findById(Goodsid, function(err, goods) {
+        const collection = db.collection<GoodsModel>('goods');
+        collection.findOne({ goods_id: goods_id }, (err, result) => {
             if (err) {
-                res.send(err);
+                client.close();
+                res.status(500).json({ message: 'MongoDB not connected.' });
+                return next(err);
+            }
+
+            client.close();
+
+            if (result == null) {
+                res.status(404).json({ message: 'Not Found.' });
             } else {
-
-                goods.name = req.body.name;
-                goods.goods_id = req.body.goods_id;
-                goods.size = req.body.size;
-                goods.amount = req.body.amount;
-                goods.note = req.body.note;
-
-                goods.save(function(err) {
-                    if (err){
-                        res.send(err);
-                    } else {
-                        res.json({ message: 'Success!' });
-                    }
-                });
+                res.json(result);
             }
         });
-});
-
-router.post('/search', function(req, res) {
-    GoodsModel.find().then(function(goods){
-        res.json(goods);
     });
 });
 
-//routerをモジュールとして扱う準備
+router.put('/:id', (req, res, next) => {
+    console.log("Server edit");
+    const goods_id = req.params.id;
+
+    const name = req.body.name;
+    const size = req.body.size;
+    const amount = req.body.amount;
+    const note = req.body.note;
+
+    const updateFields = {};
+    if (name !== undefined) { updateFields['name'] = name; }
+    if (size !== undefined) { updateFields['size'] = size; }
+    if (amount !== undefined) { updateFields['amount'] = amount; }
+    if (note !== undefined) { updateFields['note'] = note; }
+    const update = { $set: updateFields };
+
+    mongodbClient((err, client, db) => {
+        if (err) {
+            client.close();
+            res.status(500).json({ message: 'MongoDB not connected.' });
+            return next(err);
+        }
+
+        const collection = db.collection<GoodsModel>('goods');
+        collection.findOneAndUpdate({ goods_id: goods_id }, update, (err, result) => {
+            if (err) {
+                client.close();
+                res.status(500).json({ message: 'MongoDB not connected.' });
+                return next(err);
+            }
+
+            if (result.value === null) {
+                client.close();
+                res.status(404).json({ message: 'Not Found.' });
+                return;
+            }else {
+                res.json({ message: 'Success!' });
+            }
+        });
+    });
+});
+
+router.post('/search', (req, res, next) => {
+    console.log("Server search all");
+
+    mongodbClient((err, client, db) => {
+        if (err) {
+            client.close();
+            res.status(500).json({ message: 'MongoDB not connected.' });
+            return next(err);
+        }
+
+        const collection = db.collection<GoodsModel>('goods');
+
+        collection.find({},)
+            .toArray()
+            .then((result)=>{
+                res.status(200).json(result);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+            .then(() => {
+                client.close();
+            });
+               
+    });
+});
+
 export default router;
