@@ -1,6 +1,6 @@
 import * as Express from 'express';
-import mongodbClient from '../../common/mongodbClient';
-import { GoodsModel } from '../goodsModel';
+import mongodbClient from '../common/mongodbClient';
+import { GoodsModel } from '../models/goodsModel';
 
 var router = Express.Router();
 
@@ -77,6 +77,8 @@ router.get('/:id', (req, res, next) => {
 router.put('/:id', (req, res, next) => {
     console.log("Server edit");
     const goods_id = req.params.id;
+
+    console.log(req.body);
 
     const name = req.body.name;
     const size = req.body.size;

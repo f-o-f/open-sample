@@ -1,0 +1,8 @@
+<h1>ログイン画面</h1>
+<form #f="ngForm" (ngSubmit)="onSubmit(f.value)">
+    <table>
+      <tr><th>id</th><td><input type="text" name="name"></td></tr>
+      <tr><th>password</th><td><input type="password" name="password"></td></tr>
+      <tr><th></th><td><button type="onSubmit">ログイン</button></td></tr>
+    </table>
+</form>

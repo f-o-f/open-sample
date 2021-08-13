@@ -1,17 +1,19 @@
 import * as expressListEndpoints from "express-list-endpoints";
 import * as Express from 'express';
-import * as BodyParser from 'body-parser';
-import goods from './models/route/goods';
-import test from './models/route/test';
+import goods from './route/goods';
+import test from './route/test';
+import login from './route/login';
 
 const app = Express();
 
-app.use(BodyParser.urlencoded({ extended: true }));
-app.use(BodyParser.json());
+app.use(Express.urlencoded({ extended: true }));
+app.use(Express.json());
 
 var port = 3000; 
 
 app.use('/goods', goods);
+
+app.use('/login', login);
 
 app.use('/test', test);
 

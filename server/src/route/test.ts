@@ -1,5 +1,5 @@
 import * as Express from 'express';
-import mongodbClient from '../../common/mongodbClient';
+import mongodbClient from '../common/mongodbClient';
 
 const router = Express.Router();
 
