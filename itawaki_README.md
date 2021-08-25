@@ -21,7 +21,7 @@
 - Web サーバーのフレームワークには[Express](https://techacademy.jp/magazine/16119#sec1)を使用する
 - Database には NoSQL の[MongoDB](https://qiita.com/Brutus/items/8a67a4db0fdc5a33d549)を使用する
 - 資産の管理には[git](https://qiita.com/gold-kou/items/7f6a3b46e2781b0dd4a0)を使用する
-- 言語にはJavaScriptの進化版である[TypeScript](https://www.sejuku.net/blog/93230)を使用する  
+- 言語にはJavaScriptの拡張版である[TypeScript](https://www.sejuku.net/blog/93230)を使用する  
 
 
 
@@ -42,40 +42,44 @@
   - ドキュメント型の NoSQL
 
 
-### Training
+### Training(適宜)
 
-nodejs や MongoDB の学習
-
+nodejs の学習(2h)  
 [node.js 超入門 ①node.js で web サーバを作ってみる](https://qiita.com/ritukiii/items/7f28554369d63eb373c3)  
 [node.js 超入門 ②web サーバを作る(ルーティングもやってみる)](https://qiita.com/ritukiii/items/8173ff98f31c2f76b39a)  
 [node.js 超入門 ③ 簡単な web アプリケーションを作ってみる](https://qiita.com/ritukiii/items/5deba734249bf3543b85)  
-[node.js 超入門 ④mongodb を使ってみる](https://qiita.com/ritukiii/items/e6ac9077533bdcdd1a5a)  
-[Node.jsからMongoDBへ接続/操作する方法](https://garafu.blogspot.com/2017/01/intro-nodejs-mongodb.html#insert)
 
-Angularの学習
+mongodbの接続(1h)  
+[Node.js から MongoDB へ 接続 / 操作 する 方法](https://garafu.blogspot.com/2017/01/intro-nodejs-mongodb.html#insert)
 
+Angularの学習①(12h)  
 [Angular入門 - とほほのWWW入門](https://www.tohoho-web.com/ex/angular.html)  
+
+Angularの学習②(16h)  
 [Angular入門 未経験から1ヶ月でサービス作れるようにする](https://qiita.com/seteen/items/43908e33e08a39612a07)
 
-Server資産,API,Model定義の方法,DB接続の学習
-
+Server資産,API,Model定義の方法,DB接続の学習①(8h)  
 [[Node.js] Express を TypeScript で書く - 環境整備まで](https://qiita.com/kuroneko8960/items/74347b6a58020f33b18d)  
 [[Node.js] Express を TypeScript で書く - ルーティング編](https://qiita.com/kuroneko8960/items/1e6dcd0d897b42567319)  
 [[Node.js] Express を TypeScript で書く - MongoDB 接続編](https://qiita.com/kuroneko8960/items/fa8665017d98774d3c06)  
-[[Node.js] Express を TypeScript で書く - MongoDB CRUD 編](https://qiita.com/kuroneko8960/items/438936767a0fed68afe4) 
+[[Node.js] Express を TypeScript で書く - MongoDB CRUD 編](https://qiita.com/kuroneko8960/items/438936767a0fed68afe4)  
+
+Server資産,API,Model定義の方法,DB接続の学習②(4h)  
 [MongoDB+Express+AngularJS+Node.jsでシンプルなCRUDアプリ作成](https://qiita.com/naga3/items/e63144e17cb1ab9e03e9)  
+
+Server資産,API,Model定義の方法,DB接続の学習③(4h)  
 [[Angular] HTTPクライアント(RESTクライアント)を実装する](https://qiita.com/ksh-fthr/items/840ae54472892a87f48d)
 
-**NOTE**
-
+**NOTE**  
 バージョンにより様々な仕様変更があるので、注意すること
 
-**仕様変更例(エラー時等に参照)**
-
+**仕様変更例**  
 
 - [Expressでbody-parserがいらない理由](https://qiita.com/hirochan/items/e63d74cb70f0b97889fc)  
-- [AngularにおけるstrictPropertyInitializationのベストプラクティス](https://lacolaco.hatenablog.com/entry/2018/06/27/125101)
+- [AngularにおけるstrictPropertyInitializationのベストプラクティス](https://lacolaco.hatenablog.com/entry/2018/06/27/125101) 
 	- Angularの初期化漏れによるエラーの対策
+- [MongoDBで指定した範囲のドキュメントだけに件数を絞り込んで取得する方法](https://garafu.blogspot.com/2018/01/mongodb-sort-skip-limit.html) 
+	- MongodbClientの呼び出し
 
 
 ## Design
@@ -100,12 +104,31 @@ Server資産,API,Model定義の方法,DB接続の学習
 | goods_details | /goods/details | 商品詳細画面 |
 | goods_list    | /goods/list    | 商品一覧画面 |
 
+
+
 **NOTE**  
 画面の URI は[ルーティング](https://www.slideshare.net/ushiboy/spa-76170499)に使用する
 
 ### 画面遷移図
 
 <img src="./img/screen_transition_diagram.jpg" width="80%">
+
+### 画面例
+認証画面  
+<img src="./img/login.png" width="80%">  
+トップ画面  
+<img src="./img/goods.png" width="80%">  
+商品登録画面  
+<img src="./img/create.png" width="80%">  
+商品更新画面  
+<img src="./img/update.png" width="80%">  
+商品詳細画面  
+<img src="./img/details.png" width="80%">  
+商品一覧画面  
+<img src="./img/list.png" width="80%">  
+
+**NOTE**  
+必ずしもこの画面例に沿って制作する必要はなく、[Flex-Layout と Angular Material](https://dev.classmethod.jp/server-side/serverless/flex-layout-angular-material-goodbye-css/)などを活用して、独自のデザインを作成してもよい
 
 ### API 一覧
 
@@ -119,8 +142,9 @@ Server資産,API,Model定義の方法,DB接続の学習
 | /goods/search | POST   | 商品情報検索 |
 
 **NOTE**  
-API については[RESTful API](https://qiita.com/NagaokaKenichi/items/0647c30ef596cedf4bf2)に準拠する
-認証については[Oauth2.0](https://murashun.jp/blog/20150920-01.html)に準拠する  
+API については[REST API](https://www.subthread.co.jp/blog/20160506/)に準拠する  
+ExpressでのAPIについては[Express 4.x API リファレンス(英語)](https://expressjs.com/ja/api.html)を参考にする  
+認証については[Oauth2.0](https://qiita.com/TakahikoKawasaki/items/200951e5b5929f840a1f)に準拠する  
 [Oauth2.0の解説動画](https://www.youtube.com/watch?v=e9s12_G4YE4)
 
 ### Model 定義
@@ -134,7 +158,7 @@ type user = {
 
 type goods = {
   name: string;
-  goods_id: string;
+  goods_id: number;
   size: number;
   amount: number;
   note: string;
@@ -152,8 +176,7 @@ git checkout -b sample
 ```
 
 **NOTE**  
-[gitでのフォークやコミット、マージの方法](https://qiita.com/sky0621/items/8b6e88f4327b42ade5d7)  
-ファイル変更時にコマンドを`git add .`とすることで、変更のあったファイルをすべてコミット対象にすることができる
+[gitでのフォークやコミット、マージの方法](https://qiita.com/sky0621/items/8b6e88f4327b42ade5d7)
 
 尚、開発はフェーズを分けて実施すること
 
@@ -168,7 +191,8 @@ git checkout -b sample
   - トークン認証用の[ミドルウェア](https://expressjs.com/ja/guide/using-middleware.html)を作成すること
   - 参考：[【Node.js】express で OAuth2 プロバイダーを作ろう](https://qiita.com/seapolis/items/5f866e58784baf54f54c)
 
-**NOTE** nodejs はノンブロッキング I/O と呼ばれる特性があるため注意すること
+**NOTE**  
+nodejs はノンブロッキング I/O と呼ばれる特性があるため注意すること
 
 - [ノンブロッキング I/O](https://techacademy.jp/magazine/16410)とは
 
@@ -187,10 +211,10 @@ ng new client
 
 #### Client edit
 
-公式サイトを参考に画面一覧、画面遷移図から画面資産を作成する  
-画面レイアウトのフレームワークとして[Flex-Layout と Angular Material](https://dev.classmethod.jp/server-side/serverless/flex-layout-angular-material-goodbye-css/)を使用すること
+画面一覧、画面遷移図から画面資産を作成する  
 
-**NOTE** http リクエストについては[公式 HP](https://angular.jp/guide/http)がわかりやすいため参考とすること
+**NOTE**  
+http リクエストについては[公式 HP](https://angular.jp/guide/http)がわかりやすいため参考とすること
 
 ```typescript
 // ディレクトリ構造サンプル（詳細はAngularのドキュメント参照）
@@ -228,7 +252,8 @@ server に画面資材を配置する際は`ng build`で資材をバンドルす
 
 API 一覧、Model 定義から Web サーバーを作成する
 
-**NOTE** MongoDB の Nodejs パッケージのバージョンによっては仕様が異なるため、以下を参考にすること
+**NOTE**  
+MongoDB の Nodejs パッケージのバージョンによっては仕様が異なるため、以下を参考にすること
 
 [Node.js の MongoClient の仕様が変わってた](https://qiita.com/mimizq/items/76d3a948acb33881c8db)
 

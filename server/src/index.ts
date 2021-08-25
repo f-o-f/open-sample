@@ -1,13 +1,15 @@
 import * as expressListEndpoints from "express-list-endpoints";
-import * as Express from 'express';
+//import * as Express from 'express';
 import goods from './route/goods';
 import test from './route/test';
 import login from './route/login';
 
-const app = Express();
+const express = require('express');
 
-app.use(Express.urlencoded({ extended: true }));
-app.use(Express.json());
+const app = express();
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 var port = 3000; 
 
@@ -17,7 +19,7 @@ app.use('/login', login);
 
 app.use('/test', test);
 
-app.use(Express.static('./front'));
+app.use(express.static('./front'));
   
 //サーバ起動
 app.listen(3000, () => {
