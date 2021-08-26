@@ -4,7 +4,24 @@ import { GoodsModel } from '../models/goodsModel';
 
 var router = Express.Router();
 
-router.post('/', (req, res, next) => {
+// 遷移時に認証チェックを行う関数
+function isLogined(req, res, next) {
+    if(req.isAuthenticated()) {
+      // 既に認証済みなら対象の URL へのアクセスを許可する
+      next();
+    }
+    else {
+      console.error('認証未済', Error);
+      // Angular の HttpClient でエラーコールバックに反応させるため 401 を返す
+      res.status(401);
+      // HttpClient のエラー時に取得できるエラーメッセージを返す
+      res.send({
+        error: '認証してください'
+      });
+    }
+}
+
+router.post('/', isLogined,(req, res, next) => {
     console.log("Server add");
 
     const name = req.body.name;
@@ -44,7 +61,7 @@ router.post('/', (req, res, next) => {
     });
 });
 
-router.get('/:id', (req, res, next) => {
+router.get('/:id', isLogined,(req, res, next) => {
     console.log("Server detail");
     const goods_id = req.params.id;
 
@@ -74,7 +91,7 @@ router.get('/:id', (req, res, next) => {
     });
 });
 
-router.put('/:id', (req, res, next) => {
+router.put('/:id', isLogined,(req, res, next) => {
     console.log("Server edit");
     const goods_id = req.params.id;
 
@@ -118,7 +135,7 @@ router.put('/:id', (req, res, next) => {
     });
 });
 
-router.post('/search', (req, res, next) => {
+router.post('/search', isLogined,(req, res, next) => {
     console.log("Server search all");
 
     mongodbClient((err, client, db) => {
