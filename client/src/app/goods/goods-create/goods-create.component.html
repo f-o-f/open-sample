@@ -1,0 +1,12 @@
+<div fxFlex="50px" style="background-color: orange; color: white" fxLayoutAlign="center center"><app-header></app-header></div>
+<h2>登録</h2>
+<form #f="ngForm" (ngSubmit)="onSubmit(f.value)">
+  <table>
+    <tr><th>name</th><td><input type="text" name="name" [ngModel]="goods.name"></td></tr>
+    <tr><th>goods_id</th><td><input type="text" name="goods_id" [ngModel]="goods.goods_id"></td></tr>
+    <tr><th>size</th><td><input type="text" name="size" [ngModel]="goods.size"></td></tr>
+    <tr><th>amount</th><td><input type="text" name="amount" [ngModel]="goods.amount"></td></tr>
+    <tr><th>note</th><td><input type="text" name="note" [ngModel]="goods.note"></td></tr>
+  </table>
+  <button type = "ngSubmit">登録</button>
+</form>

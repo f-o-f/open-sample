@@ -1,0 +1,13 @@
+<div fxFlex="50px" style="background-color: orange; color: white" fxLayoutAlign="center center"><app-header></app-header></div>
+<h2>商品一覧</h2>
+<table border="1">
+  <tr><th>name</th><th>id</th><th>size</th><th>amount</th><th>note</th><th>link</th></tr>
+  <tr *ngFor="let goods of goodsList">
+    <td>{{goods.name}}</td>
+    <td>{{goods.goods_id}}</td>
+    <td>{{goods.size}}</td>
+    <td>{{goods.amount}}</td>
+    <td>{{goods.note}}</td>
+    <td><button mat-icon-button color="primary" routerLink="/goods/details/{{goods.goods_id}}"><mat-icon>search</mat-icon></button></td>
+  </tr>
+</table>
