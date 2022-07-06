@@ -118,10 +118,15 @@ type goods = {
 
 ## Development
 
-任意のディレクトリにこの repository をクローンして、ローカル branch を作成する
+自身のrepositoryに当repositoryをForkする
+
+[(参考)Github で Fork して PullRequest を送るのはこんなに簡単](https://qiita.com/YumaInaura/items/acff806290c8953d3185)
+
+任意のForkしたrepositoryをクローンして、ローカル branch を作成する
 
 ```bash
-git clone https://github.com/f-o-f/open-sample.git
+## {xxxxx} は自身のusername
+git clone https://github.com/{xxxxx}/open-sample.git
 cd open-sample
 git checkout -b sample
 ```
