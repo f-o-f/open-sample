@@ -1,0 +1,23 @@
+<div class="container">
+<br>
+    <div class="row">
+        <div *ngFor="let goods of goods; let goodsId = index" class="col-sm">
+            <a [routerLink]="[ goodsId ]">
+                <div class="card">
+                    <!-- <img src="..." class="card-img-top" alt="..."> -->
+                    <div class="card-body">
+                        <p class="card-text">{{ goods.name }}</p>
+                        <p class="card-text">{{ goods.goods_id }}</p>
+                        <p class="card-text">{{ goods.size }}</p>
+                        <p class="card-text">{{ goods.amount }}</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+<br>
+<br>
+    <div>
+        <button routerLink ="create">登録</button>
+    </div>
+</div>
