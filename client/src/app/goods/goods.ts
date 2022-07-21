@@ -18,4 +18,3 @@ export const goods = [
       amount: 5,
     }
   ];
-  
