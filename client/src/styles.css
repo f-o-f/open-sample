@@ -1,1 +1,51 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    font-size: 1.4em;
+}
+
+a:link,
+a:visited {
+    color: royalblue;
+}
+
+.main {
+    padding: 8px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 600px;
+    margin: 0 auto;
+}
+
+table th,
+table td {
+    border: 1px solid #ccc;
+    padding: 4px;
+    text-align: left;
+}
+
+table th {
+    background-color: #ddd;
+    width: 150px;
+}
+
+button {
+    margin-top: 4px;
+    margin-right: 4px;
+    padding: 4px;
+    min-width: 100px;
+    color:#fff;
+    background-color: royalblue;
+    border: 0;
+    border-radius: 7px;
+}
+
+input[type="text"] {
+    padding: 4px;
+    width: 200px;
+}

@@ -1,24 +1,26 @@
-<table>
-    <tr>
-        <th>Name</th>
-        <td>{{goods.name}}</td>
-    </tr>
-    <tr>
-        <th>Goods_id</th>
-        <td>{{goods.goods_id}}</td>
-    </tr>
-    <tr>
-        <th>Size</th>
-        <td>{{goods.size}}</td>
-    </tr>
-    <tr>
-        <th>Amount</th>
-        <td>{{goods.amount}}</td>
-    </tr>
-    <tr>
-        <th>note</th>
-        <td>{{goods.note}}</td>
-    </tr>
-</table>
-<button routerLink="/goods/list">戻る</button>
-<button type="submit">更新</button>
+<div>
+    <table>
+        <tr>
+            <th>商品名</th>
+            <td>{{goods.name}}</td>
+        </tr>
+        <tr>
+            <th>商品ID</th>
+            <td>{{goods.goods_id}}</td>
+        </tr>
+        <tr>
+            <th>サイズ</th>
+            <td>{{goods.size}}</td>
+        </tr>
+        <tr>
+            <th>数量</th>
+            <td>{{goods.amount}}</td>
+        </tr>
+        <tr>
+            <th>説明</th>
+            <td>{{goods.note}}</td>
+        </tr>
+    </table>
+    <button routerLink="/goods/list">戻る</button>
+    <button type="submit">更新</button>
+</div>

@@ -10,7 +10,7 @@ export class GoodsService {
     this.goodsList = [
       {
         name: '商品a',
-        goods_id: 'id_0',
+        goods_id: '0000',
         size: 1,
         amount: 1,
         note: '説明',
