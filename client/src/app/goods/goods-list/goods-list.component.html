@@ -1,0 +1,14 @@
+
+<h1>商品一覧</h1>
+<table>
+  <tr><th>Name</th><th>Id</th><th>Size</th><th>Amount</th><th>note</th></tr>
+  <tr *ngFor="let goods of goodsList">
+    <td>{{goods.name}}</td>
+    <td>{{goods.goods_id}}</td>
+    <td>{{goods.size}}</td>
+    <td>{{goods.amount}}</td>
+    <td>{{goods.note}}</td>
+    <td><a routerLink="/goods/{{goods.goods_id}}">明細</a></td>
+  </tr>
+</table>
+<button routerLink="/goods">戻る</button>
