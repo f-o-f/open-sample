@@ -2,7 +2,7 @@
 <br>
     <div class="row">
         <div *ngFor="let goods of goods; let goodsId = index" class="col-sm">
-            <a [routerLink]="[ goodsId ]">
+            <a [routerLink]="[ goods._Id ]">
                 <div class="card">
                     <!-- <img src="..." class="card-img-top" alt="..."> -->
                     <div class="card-body">

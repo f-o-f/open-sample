@@ -1,6 +1,6 @@
 import { Component, OnInit,} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { goods } from '../../goods/goods';
+import { GoodsService } from 'src/app/service/goods.service';
 
 @Component({
   selector: 'app-goods-details',
@@ -10,11 +10,21 @@ import { goods } from '../../goods/goods';
 export class GoodsDetailsComponent implements OnInit {
   goods: any;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(
+    private route: ActivatedRoute,
+    private goodsService: GoodsService) { }
 
   ngOnInit(): void {
   this.route.paramMap.subscribe(params => {
-    this.goods = goods[+params.get("goodsId")!]
+    // this.goods = this.goodsService.getGoodsById(params.get('goodsId')!)
+    const goodsObservable = this.goodsService.getGoodsById(params.get('goodsId')!)
+
+    goodsObservable.subscribe(
+      (data) => { 
+        this.goods = data
+      },
+      (err) => {}
+    )
     })
   }
 }

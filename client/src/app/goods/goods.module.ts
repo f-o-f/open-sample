@@ -7,6 +7,7 @@ import { GoodsComponent } from './goods.component';
 import { GoodsCreateComponent } from './goods-create/goods-create.component';
 import { GoodsUpdateComponent } from './goods-update/goods-update.component';
 import { FormsModule } from '@angular/forms';
+import { GoodsService } from '../service/goods.service';
 
 
 const routes: Routes = [
@@ -31,9 +32,9 @@ const routes: Routes = [
   imports: [
     RouterModule.forChild(routes),
     CommonModule,
-    FormsModule
+    FormsModule,
   ],
-  providers: [],
+  providers: [GoodsService],
   bootstrap: []
 })
 export class GoodsModule { }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { goods } from '../../goods/goods';
+import { GoodsService } from 'src/app/service/goods.service';
 
 @Component({
   selector: 'app-goods-list',
@@ -7,15 +7,19 @@ import { goods } from '../../goods/goods';
   styleUrls: ['./goods-list.component.scss']
 })
 export class GoodsListComponent implements OnInit {
+  goods: any[] =[]
 
-  goods: any;
-
-  constructor(
-    // private goods: Goods
+  constructor(private goodsService: GoodsService
   ) { }
 
   ngOnInit(): void {
-    this.goods = goods
+    // this.goods = this.goodsService.getGoods()
+    const goodsObservable = this.goodsService.getGoods()
+    goodsObservable.subscribe(
+      (data) => { 
+        this.goods = data
+      },
+      (err) => { console.error('次のエラーが発生しました: ' + err) }
+    )    
   }
-
 }
