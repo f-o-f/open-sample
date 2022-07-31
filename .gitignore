@@ -146,3 +146,8 @@ testem.log
 .DS_Store
 Thumbs.db
 
+#Config Files
+sever/config/dev.js
+
+client/.angular/cache/14.0.6/angular-webpack/91c475b4eb111fde739820373c32e1144a9d01ec/5.pack
+client/.angular/cache/14.0.6/angular-webpack/91c475b4eb111fde739820373c32e1144a9d01ec/12.pack

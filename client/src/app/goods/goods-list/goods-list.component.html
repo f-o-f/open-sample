@@ -1,23 +1,27 @@
 <div class="container">
 <br>
+    <div>
+        <button routerLink ="create">登録</button>
+    </div>
+    <br>
+    <br>
+    <div>
+        <button routerLink ="">検索</button>
+    </div>
+    <br>
+    <br>
     <div class="row">
         <div *ngFor="let goods of goods; let goodsId = index" class="col-sm">
-            <a [routerLink]="[ goods._Id ]">
+            <a [routerLink]="[ goods._id ]">
                 <div class="card">
-                    <!-- <img src="..." class="card-img-top" alt="..."> -->
                     <div class="card-body">
-                        <p class="card-text">{{ goods.name }}</p>
-                        <p class="card-text">{{ goods.goods_id }}</p>
-                        <p class="card-text">{{ goods.size }}</p>
-                        <p class="card-text">{{ goods.amount }}</p>
+                        <p class="card-text">商品名：{{ goods.name }}</p>
+                        <p class="card-text">商品ID：{{ goods.goods_id }}</p>
+                        <p class="card-text">サイズ：{{ goods.size }}</p>
+                        <p class="card-text">数量：{{ goods.amount }}</p>
                     </div>
                 </div>
             </a>
         </div>
-    </div>
-<br>
-<br>
-    <div>
-        <button routerLink ="create">登録</button>
-    </div>
+    </div>   
 </div>

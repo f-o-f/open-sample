@@ -16,7 +16,6 @@ export class GoodsDetailsComponent implements OnInit {
 
   ngOnInit(): void {
   this.route.paramMap.subscribe(params => {
-    // this.goods = this.goodsService.getGoodsById(params.get('goodsId')!)
     const goodsObservable = this.goodsService.getGoodsById(params.get('goodsId')!)
 
     goodsObservable.subscribe(
