@@ -1,0 +1,20 @@
+<div>
+    <form (ngSubmit)="saveGoods()">
+        <input type="hidden" name="goo・ds_id" [ngModel]="goods.id">
+        <br>
+        <br>
+        <label class="label" for="name">商品名</label>
+            <input id="name" type="text" name="name" [ngModel]="goods.name">
+            <br>
+            <br>
+        <label for="num">サイズ</label>
+             <input id="num" type="number" name="size" [ngModel]="goods.size">
+             <br>
+             <br>
+        <label for="num">数量</label>
+            <input id="num" type="number" name="amount" [ngModel]="goods.amount">
+        <button type="ngsubmit">登録する</button>
+         <br>
+        <button routerLink="/goods">戻る</button>    
+    </form>
+</div>

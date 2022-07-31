@@ -1,0 +1,12 @@
+<div fxLayout="column">
+    <div fxFlex="50px" style="background-color: skyblue; color: white" fxLayoutAlign="center center">詳細</div>
+</div>
+
+    <div *ngIf="goods">
+        <table>
+            <tr>商品名：{{ goods.name }}</tr>
+            <tr>商品ID：{{ goods.goods_id }}</tr>
+            <tr>サイズ：{{ goods.size }}</tr>
+            <tr>数量：{{ goods.amount }}</tr>
+        </table>
+    </div>

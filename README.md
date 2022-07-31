@@ -106,7 +106,6 @@ type user = {
   id: number;
   password: string;
 };
-
 type goods = {
   name: string;
   goods_id: string;
