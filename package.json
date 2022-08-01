@@ -1,0 +1,40 @@
+{
+  "name": "open-sample",
+  "version": "1.0.0",
+  "description": "オープン系システム開発の基礎部分に触れるためのサンプル",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node dist/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fbs11shimizu/open-sample.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fbs11shimizu/open-sample/issues"
+  },
+  "homepage": "https://github.com/fbs11shimizu/open-sample#readme",
+  "dependencies": {
+    "@types/mongodb": "^4.0.7",
+    "body-parser": "^1.20.0",
+    "express": "^4.18.1",
+    "express-list-endpoints": "^6.0.0",
+    "mongodb": "^4.8.1",
+    "mongoose": "^6.5.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@webpack-cli/generators": "^2.5.0",
+    "awesome-typescript-loader": "^5.2.1",
+    "source-map-loader": "^4.0.0",
+    "tslint": "^5.20.1",
+    "tslint-config-airbnb": "^5.11.2",
+    "typescript": "^3.9.10",
+    "webpack-cli": "^4.10.0",
+    "webpack-node-externals": "^3.0.0"
+  },
+  "keywords": []
+}
