@@ -1,1 +1,28 @@
-<p>goods-update works!</p>
+<div>
+    <form #f="ngForm" (ngSubmit)="onSubmit(f.value)">
+        <table>
+            <tr>
+                <th>商品名</th>
+                <td><input type="text" name="name" [ngModel]="goods.name"></td>
+            </tr>
+            <tr>
+                <th>商品ID</th>
+                <td>{{goods.goods_id}}</td>
+            </tr>
+            <tr>
+                <th>サイズ</th>
+                <td><input type="text" name="size" [ngModel]="goods.size"></td>
+            </tr>
+            <tr>
+                <th>数量</th>
+                <td><input type="text" name="amount" [ngModel]="goods.amount"></td>
+            </tr>
+            <tr>
+                <th>説明</th>
+                <td><input type="text" name="note" [ngModel]="goods.note"></td>
+            </tr>
+        </table>
+        <button routerLink="/goods">戻る</button>
+        <button type="submit">更新</button>
+    </form>
+</div>
